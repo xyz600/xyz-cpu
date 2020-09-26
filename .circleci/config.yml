@@ -11,7 +11,7 @@ jobs:
           command: |
             cd src
             iverilog -s TestClock -o clock -g2012 test_clock.sv
-            iverilog -s TestAdder -o clock -g2012 test_adder.sv
+            iverilog -s TestAdder -o adder -g2012 test_adder.sv
 
   test:
     docker:
@@ -24,7 +24,7 @@ jobs:
             cd src
             iverilog -s TestClock -o clock -g2012 test_clock.sv
             ./clock
-            iverilog -s TestAdder -o clock -g2012 test_adder.sv
+            iverilog -s TestAdder -o adder -g2012 test_adder.sv
             ./adder
 
 workflows:
