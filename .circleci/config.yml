@@ -1,5 +1,3 @@
-version: 2
-
 executors:
   my-executor:
     docker:
@@ -20,9 +18,3 @@ jobs:
       - checkout
       - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
       - run: ./clock
-
-workflows:
-  workflow:
-    jobs:
-      - build
-      - test
