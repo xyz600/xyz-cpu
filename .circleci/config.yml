@@ -13,4 +13,5 @@ jobs:
     steps:
       - checkout
       - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
+      - run: cd src
       - run: ./clock
