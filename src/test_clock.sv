@@ -10,6 +10,10 @@ module TestClock();
     );
 
     initial begin
+        $monitor("clk = %d", clk);
+    end
+
+    initial begin
         #1;
         for (int i = 0; i < 4; i++) begin
             assert(clk == 0) else $error("negedge failed"); #1;
