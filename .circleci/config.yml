@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 jobs:
   build:
@@ -25,9 +25,10 @@ jobs:
             ./clock
 
 workflows:
+  version: 2
   test:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
