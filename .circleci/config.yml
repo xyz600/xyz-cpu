@@ -1,0 +1,28 @@
+version: 2
+
+executors:
+  my-executor:
+    docker:
+      - image: cranphin/iverilog
+    working_directory: ~/work
+
+jobs:
+  build:
+    executor: my-executor
+    steps:
+      - checkout
+      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
+  test:
+    executor: my-executor
+    requires:
+      - build
+    steps:
+      - checkout
+      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
+      - run: ./clock
+
+workflows:
+  workflow:
+    jobs:
+      - build
+      - test
