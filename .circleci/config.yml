@@ -1,3 +1,5 @@
+version: 2
+
 jobs:
   build:
     docker:
@@ -5,20 +7,28 @@ jobs:
     steps:
       - checkout
       - run:
-        name: ビルドテスト 
-        command: |
-          cd src
-          iverilog -s TestClock -o clock -g2012 test_clock.sv
+          name: ビルドテスト 
+          command: |
+            cd src
+            iverilog -s TestClock -o clock -g2012 test_clock.sv
+
   test:
     docker:
       - image: cranphin/iverilog
-    requires:
-      - build
     steps:
       - checkout
-      - run: 
-        name: ビルド＋実行
-        command: |
-          cd src
-          iverilog -s TestClock -o clock -g2012 test_clock.sv
-          ./clock
+      - run:
+          name: ビルド＋実行
+          command: |
+            cd src
+            iverilog -s TestClock -o clock -g2012 test_clock.sv
+            ./clock
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
