@@ -11,7 +11,6 @@ jobs:
           command: |
             cd src
             iverilog -s TestClock -o clock -g2012 test_clock.sv
-          
   test:
     docker:
       - image: cranphin/iverilog
