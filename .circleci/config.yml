@@ -4,6 +4,7 @@ jobs:
       - image: cranphin/iverilog
     steps:
       - checkout
+      - run: cd src
       - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
   test:
     docker:
@@ -12,6 +13,6 @@ jobs:
       - build
     steps:
       - checkout
-      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
       - run: cd src
+      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
       - run: ./clock
