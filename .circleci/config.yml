@@ -9,8 +9,8 @@ jobs:
       - run:
         name: ビルドテスト 
         command: |
-          cd src
-          iverilog -s TestClock -o clock -g2012 test_clock.sv
+          cd src && iverilog -s TestClock -o clock -g2012 test_clock.sv
+          
   test:
     docker:
       - image: cranphin/iverilog
@@ -21,6 +21,4 @@ jobs:
       - run: 
         name: ビルド＋実行
         command: |
-          cd src
-          iverilog -s TestClock -o clock -g2012 test_clock.sv
-          ./clock
+          cd src && iverilog -s TestClock -o clock -g2012 test_clock.sv && ./clock
