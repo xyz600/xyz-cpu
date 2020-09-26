@@ -4,8 +4,11 @@ jobs:
       - image: cranphin/iverilog
     steps:
       - checkout
-      - run: cd src
-      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
+      - run:
+        name: ビルドテスト 
+        command: |
+          cd src
+          iverilog -s TestClock -o clock -g2012 test_clock.sv
   test:
     docker:
       - image: cranphin/iverilog
@@ -13,6 +16,9 @@ jobs:
       - build
     steps:
       - checkout
-      - run: cd src
-      - run: iverilog -s TestClock -o clock -g2012 test_clock.sv
-      - run: ./clock
+      - run: 
+        name: ビルド＋実行
+        command: |
+          cd src
+          iverilog -s TestClock -o clock -g2012 test_clock.sv
+          ./clock
