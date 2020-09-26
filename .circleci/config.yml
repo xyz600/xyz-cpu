@@ -14,8 +14,6 @@ jobs:
   test:
     docker:
       - image: cranphin/iverilog
-    requires:
-      - build
     steps:
       - checkout
       - run:
