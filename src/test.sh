@@ -10,5 +10,9 @@ echo ${source}
 
 for src in ${source}; do
     src_name=${src%.*}
-    iverilog -o ${src_name} -g2012 test_${src_name}.sv
+    ./${src_name}
 done
+
+if [ -e wave.vcd ]; then
+    gtkwave wave.vcd
+fi

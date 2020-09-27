@@ -14,6 +14,7 @@ module TestClock();
     end
 
     initial begin
+        $display("start clock test");
         #1;
         for (int i = 0; i < 4; i++) begin
             assert(clk == 0) else $error("negedge failed"); #1;

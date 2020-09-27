@@ -4,11 +4,12 @@
 module TestAdder();
 
     logic [31:0] in1, in2, out;
-    logic cout;
+    logic cout, cin;
 
     Adder #(32) adder(
         .in1 (in1),
         .in2 (in2),
+        .cin (cin),
         .out (out),
         .cout (cout)
     );
@@ -18,22 +19,34 @@ module TestAdder();
     end
 
     initial begin
+        $display("start adder test");
+
         #10;
+        // 足し算の例
         for (int i = 0; i < 16; i++) begin
-            in1 = i;
-            in2 = i;
+            in1 <= i;
+            in2 <= i;
+            cin <= 0;
             #10;
             assert (out == 2 * i) else $error("adder test 1 failed");
             #10;
         end
-    end
 
-    initial begin
+        // 負の足し算の例(cin 無効)
         #10;
-        in1 = -10;
-        in2 = 10;
+        cin <= 0;
+        in1 <= -10;
+        in2 <= 10;
         #10;
         assert (out == 0) else $error("adder test 2 failed");
+        #10;
+
+        // 負の足し算の例(cin 有効)
+        cin <= 1;
+        in1 <= -10;
+        in2 <= 10;
+        #10;
+        assert (out == 1) else $error("adder test 2 failed");
         #10;
     end
 
