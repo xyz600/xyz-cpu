@@ -19,6 +19,8 @@ module TestAdder();
     end
 
     initial begin
+        $display("start adder test");
+
         #10;
         // 足し算の例
         for (int i = 0; i < 16; i++) begin
