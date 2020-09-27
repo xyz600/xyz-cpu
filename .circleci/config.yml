@@ -10,8 +10,7 @@ jobs:
           name: ビルドテスト 
           command: |
             cd src
-            iverilog -s TestClock -o clock -g2012 test_clock.sv
-            iverilog -s TestAdder -o adder -g2012 test_adder.sv
+            ./build.sh
 
   test:
     docker:
@@ -22,10 +21,8 @@ jobs:
           name: ビルド＋実行
           command: |
             cd src
-            iverilog -s TestClock -o clock -g2012 test_clock.sv
-            ./clock
-            iverilog -s TestAdder -o adder -g2012 test_adder.sv
-            ./adder
+            ./build.sh
+            ./test.sh
 
 workflows:
   version: 2
