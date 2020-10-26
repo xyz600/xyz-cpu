@@ -9,7 +9,7 @@ module Subtractor
     logic [width-1:0] tmp_in2;
     logic cin;
 
-    Adder #(32) adder(
+    Adder #(width) adder(
         .in1 (in1),
         .in2 (tmp_in2),
         .cin (cin),
