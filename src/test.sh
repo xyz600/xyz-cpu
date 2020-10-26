@@ -2,11 +2,11 @@
 
 set -eu
 
+. common.sh
+
 shopt -s extglob
 
-source=`ls !(test_*).sv`
-
-echo ${source}
+cd ${BIN_DIR}
 
 for src in ${source}; do
     src_name=${src%.*}
